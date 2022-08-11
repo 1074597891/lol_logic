@@ -18,7 +18,7 @@ def match(IMSRC, IMOBJ):
     # 匹配图标位置
     imsrc = cv2.imread(IMSRC)
     imobj = cv2.imread(IMOBJ)
-    pos = ac.find_template(imsrc, imobj, 0.2)
+    pos = ac.find_template(imsrc, imobj, 0.7)
     if pos == None:
         print("最终没能匹配到：" + imsrc)
     else:
@@ -33,22 +33,20 @@ def match(IMSRC, IMOBJ):
         time.sleep(0.5)
         return (point)
 
+
 def show_and_save(imgPath, pos):
-    print("Img:",imgPath)
+    print("Img:", imgPath)
     img = cv2.imread(imgPath)
-     # 画矩形
+    # 画矩形
     cv2.rectangle(img, pos['rectangle'][0], pos['rectangle'][3], (0, 0, 255), 2)  # 红
     # 画中心点
     cv2.circle(img, tuple(map(int, pos['result'])), 3, (255, 0, 0), -1)  # -1表示填充
 
     time_now = time.strftime('%Y-%m-%d--%H-%M-%S', time.localtime(time.time()))
     imgpath = os.getcwd()
-    print (imgpath)
-    save_jpg =imgpath + "\\" + time_now + '.jpg'
-    print("path:",save_jpg)
+    save_jpg = imgpath + "\\" + time_now + '.jpg'
+    print("path:", save_jpg)
     cv2.imwrite(save_jpg, img)
-
-
 
 
 if __name__ == '__main__':

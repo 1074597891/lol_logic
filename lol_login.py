@@ -3,11 +3,12 @@ import win32api
 import win32con
 import win32gui
 import match_QQlogin
+import ScreenCapture
 
 LOL = "D:\\英雄联盟\\TCLS\\Client.exe"
 win32api.ShellExecute(0, 'open', LOL, '', '', 1)
 
-time.sleep(1)
+ScreenCapture.ScreenCapture()
 
 match_QQlogin.match("./client_src.png", "./client_obj.png")
 
