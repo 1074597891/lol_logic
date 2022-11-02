@@ -1,58 +1,40 @@
-import time
 import win32api
-import win32con
-import win32gui
+import time
+from pynput import mouse
+from pynput import keyboard
+
 import match_QQlogin
 import ScreenCapture
 
-LOL = "D:\\英雄联盟\\TCLS\\Client.exe"
+LOL = "D:\\游戏\\英雄联盟\\TCLS\\Client.exe"
 win32api.ShellExecute(0, 'open', LOL, '', '', 1)
 
 ScreenCapture.ScreenCapture()
+if match_QQlogin.match("./client_obj.png", "./client_src.png") == 0:
+    while 1:
+        if match_QQlogin.match("./client_obj.png", "./client_src.png"):
+            break
 
-match_QQlogin.match("./client_src.png", "./client_obj.png")
+(x1, y1, x2, y2) = ScreenCapture.ScreenCapture()
+(x1_match, y1_match) = match_QQlogin.match("./client_src.png", "./src.png")
 
+control_mouse = mouse.Controller()
+time.sleep(1)
+pos_x = x1 + x1_match
+pos_y = y1 + y1_match
+print(pos_x, pos_y)
+control_mouse.position = (pos_x, pos_y)
+control_mouse.press(mouse.Button.left)
+control_mouse.release(mouse.Button.left)
+time.sleep(1)
+mm_y = pos_y + 50
 
+control_mouse.position = (pos_x, mm_y)
+control_mouse.press(mouse.Button.left)
+control_mouse.release(mouse.Button.left)
 
-# keyboard.press('z')
-# keyboard.release('z')
-#
-# keyboard.press('y')
-# keyboard.release('y')
-#
-# keyboard.press('x')
-# keyboard.release('x')
-#
-# keyboard.press('1')
-# keyboard.release('1')
-#
-# keyboard.press('0')
-# keyboard.release('0')
-#
-# keyboard.press('7')
-# keyboard.release('7')
-#
-# keyboard.press('4')
-# keyboard.release('4')
-#
-# keyboard.press('5')
-# keyboard.release('5')
-#
-# keyboard.press('9')
-# keyboard.release('9')
-#
-# keyboard.press('7')
-# keyboard.release('7')
-#
-# keyboard.press('8')
-# keyboard.release('8')
-#
-# keyboard.press('9')
-# keyboard.release('9')
-#
-# keyboard.press('1')
-# keyboard.release('1')
+time.sleep(1)
 
-
+control_keyboard = keyboard.Controller()
 
 

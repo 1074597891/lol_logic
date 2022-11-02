@@ -7,8 +7,9 @@
 # rectangle：匹配图片在原始图像上四边形的坐标
 # result：匹配图片在原始图片上的中心坐标点，也就是我们要找的点击点
 import os
+import shutil
 import time
-
+import re
 import aircv as ac
 import cv2
 import pyautogui
@@ -18,9 +19,10 @@ def match(IMSRC, IMOBJ):
     # 匹配图标位置
     imsrc = cv2.imread(IMSRC)
     imobj = cv2.imread(IMOBJ)
-    pos = ac.find_template(imsrc, imobj, 0.7)
-    if pos == None:
+    pos = ac.find_template(imsrc, imobj, 0.9)
+    if pos is None:
         print("最终没能匹配到：" + imsrc)
+        return 0
     else:
         try:
             show_and_save(IMSRC, pos)
@@ -31,7 +33,7 @@ def match(IMSRC, IMOBJ):
         pyautogui.moveTo(point)
         print("匹配成功：{}".format(IMSRC))
         time.sleep(0.5)
-        return (point)
+        return point
 
 
 def show_and_save(imgPath, pos):
@@ -47,7 +49,10 @@ def show_and_save(imgPath, pos):
     save_jpg = imgpath + "\\" + time_now + '.jpg'
     print("path:", save_jpg)
     cv2.imwrite(save_jpg, img)
+    shutil.move(save_jpg, './pic')
+    ref_pos = pos.get("result")
+    return ref_pos
 
 
 if __name__ == '__main__':
-    match("./client_obj.png", "./client_src.png")
+    match("./client_src.png", "./src.png")
