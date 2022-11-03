@@ -9,7 +9,7 @@
 import os
 import shutil
 import time
-import re
+
 import aircv as ac
 import cv2
 import pyautogui
@@ -21,8 +21,7 @@ def match(IMSRC, IMOBJ):
     imobj = cv2.imread(IMOBJ)
     pos = ac.find_template(imsrc, imobj, 0.9)
     if pos is None:
-        print("最终没能匹配到：" + imsrc)
-        return 0
+        print("最终没能匹配到：" + IMSRC)
     else:
         try:
             show_and_save(IMSRC, pos)
@@ -51,6 +50,7 @@ def show_and_save(imgPath, pos):
     cv2.imwrite(save_jpg, img)
     shutil.move(save_jpg, './pic')
     ref_pos = pos.get("result")
+    print(ref_pos)
     return ref_pos
 
 
