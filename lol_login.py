@@ -18,9 +18,9 @@ while 1:
     qq_src = cv2.imread("./src.png")
     ScreenCapture.ScreenCapture()
     time.sleep(1)
+    print(ac.find_template(imsrc, imobj, 0.99))
+    print(ac.find_template(imsrc, qq_src, 0.9))
     if (ac.find_template(imsrc, imobj, 0.99) and ac.find_template(imsrc, qq_src, 0.9)) is None:
-        print(ac.find_template(imsrc, imobj, 0.99))
-        print(ac.find_template(imsrc, qq_src, 0.9))
         print("最终没能匹配到：" + IMSRC)
         continue
     else:
@@ -44,10 +44,25 @@ while 1:
         control_mouse.position = (pos_x, identify_y)
         control_mouse.press(mouse.Button.left)
         control_mouse.release(mouse.Button.left)
-        time.sleep(1)
-        Select_region_y = pos_y + 250 + 270
-        Select_region_x = pos_x - 230
-        control_mouse.position = (Select_region_x,Select_region_y)
-        control_mouse.press(mouse.Button.left)
-        control_mouse.release(mouse.Button.left)
+        time.sleep(2)
+
+        if ac.find_template(imsrc, cv2.imread("./select_region.png"), 0.9) is None:
+            ScreenCapture.ScreenCapture()
+            time.sleep(2)
+            if ac.find_template(imsrc, cv2.imread("./select_region.png"), 0.9):
+                Select_region_y = pos_y + 250 + 270
+                Select_region_x = pos_x - 230
+                control_mouse.position = (Select_region_x, Select_region_y)
+                control_mouse.press(mouse.Button.left)
+                control_mouse.release(mouse.Button.left)
+            else:
+                print("未加载出界面，等待5s")
+                time.sleep(5)
+                Select_region_y = pos_y + 250 + 70
+                Select_region_x = pos_x - 230
+                print(Select_region_x, Select_region_y)
+                control_mouse.position = (Select_region_x, Select_region_y)
+                control_mouse.press(mouse.Button.left)
+                control_mouse.release(mouse.Button.left)
+
         break
