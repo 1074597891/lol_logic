@@ -48,11 +48,15 @@ def show_and_save(imgPath, pos):
     save_jpg = imgpath + "\\" + time_now + '.jpg'
     print("path:", save_jpg)
     cv2.imwrite(save_jpg, img)
-    shutil.move(save_jpg, './pic')
-    ref_pos = pos.get("result")
-    print(ref_pos)
-    return ref_pos
+    if not os.path.isdir("./pic"):
+        # 创建文件夹
+        os.mkdir("./pic")
+    else:
+        shutil.move(save_jpg, './pic')
+        ref_pos = pos.get("result")
+        print(ref_pos)
+        return ref_pos
 
 
 if __name__ == '__main__':
-    match("./client_src.png", "./src.png")
+    match("./image/client_src.png", "./image/src.png")

@@ -1,0 +1,33 @@
+aircv==1.4.6
+altgraph==0.17.2
+baidu-aip==2.2.18.0
+beautifulsoup4==4.10.0
+bs4==0.0.1
+certifi==2021.10.8
+charset-normalizer==2.0.9
+colorama==0.4.4
+commonmark==0.9.1
+future==0.18.2
+idna==3.3
+keyboard==0.13.5
+numpy==1.23.2
+opencv-python==4.5.4.60
+pefile==2021.9.3
+Pillow @ file:///D:/bld/pillow_1666920753896/work
+pip-search==0.0.7
+PyAutoGUI @ file:///D:/bld/pyautogui_1636625397280/work
+Pygments==2.10.0
+pyinstaller==4.7
+pyinstaller-hooks-contrib==2021.4
+PyMsgBox @ file:///home/conda/feedstock_root/build_artifacts/pymsgbox_1662247063101/work
+pynput==1.7.6
+PyScreeze @ file:///home/conda/feedstock_root/build_artifacts/pyscreeze_1662242741693/work
+pytweening @ file:///home/conda/feedstock_root/build_artifacts/pytweening_1662241532881/work
+pywin32==302
+pywin32-ctypes==0.2.0
+requests==2.26.0
+rich==10.16.1
+six==1.16.0
+soupsieve==2.3.1
+urllib3==1.26.7
+wincertstore==0.2

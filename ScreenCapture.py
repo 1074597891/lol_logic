@@ -36,7 +36,7 @@ def ScreenCapture():
     from PIL import ImageGrab
 
     img_ready = ImageGrab.grab((x1, y1, x2, y2))
-    img_ready.save('client_src.png')
+    img_ready.save('./image/client_src.png')
     return x1, y1, x2, y2
     # 截图
 

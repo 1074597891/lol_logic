@@ -11,11 +11,11 @@ import ScreenCapture
 LOL = "D:\\游戏\\英雄联盟\\TCLS\\Client.exe"
 win32api.ShellExecute(0, 'open', LOL, '', '', 1)
 while 1:
-    IMSRC = "./client_src.png"
-    IMOBJ = "./client_obj.png"
+    IMSRC = "./image/client_src.png"
+    IMOBJ = "./image/client_obj.png"
     imsrc = cv2.imread(IMSRC)
     imobj = cv2.imread(IMOBJ)
-    qq_src = cv2.imread("./src.png")
+    qq_src = cv2.imread("./image/src.png")
     ScreenCapture.ScreenCapture()
     time.sleep(1)
     print(ac.find_template(imsrc, imobj, 0.99))
@@ -25,7 +25,7 @@ while 1:
         continue
     else:
         (x1, y1, x2, y2) = ScreenCapture.ScreenCapture()
-        (x1_match, y1_match) = match_QQlogin.match("./client_src.png", "./src.png")
+        (x1_match, y1_match) = match_QQlogin.match("./image/client_src.png", "./image/src.png")
         control_mouse = mouse.Controller()
         time.sleep(1)
         pos_x = x1 + x1_match
@@ -46,10 +46,10 @@ while 1:
         control_mouse.release(mouse.Button.left)
         time.sleep(2)
 
-        if ac.find_template(imsrc, cv2.imread("./select_region.png"), 0.9) is None:
+        if ac.find_template(imsrc, cv2.imread("./image/select_region.png"), 0.9) is None:
             ScreenCapture.ScreenCapture()
             time.sleep(2)
-            if ac.find_template(imsrc, cv2.imread("./select_region.png"), 0.9):
+            if ac.find_template(imsrc, cv2.imread("./image/select_region.png"), 0.9):
                 Select_region_y = pos_y + 250 + 270
                 Select_region_x = pos_x - 230
                 control_mouse.position = (Select_region_x, Select_region_y)
